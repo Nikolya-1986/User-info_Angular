@@ -1,0 +1,74 @@
+<article class="container">
+
+    <section 
+      *ngIf="successMsg"
+      class="alert alert-success alert-dismissible fade show row" 
+      role="alert"
+      >
+      <strong>
+          {{ successMsg }}
+      </strong>
+      <button 
+          type="button" 
+          class="btn-close" 
+          data-bs-dismiss="alert" 
+          aria-label="Close"
+          >
+      </button>
+    </section>
+
+    <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">
+                Name
+            </th>
+            <th scope="col">
+                Email
+            </th>
+            <th scope="col">
+                Mobile No
+            </th>
+            <th scope="col">
+                Delete
+            </th>
+            <th scope="col">
+              Update
+          </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let user of users; let ind=index">
+            <th scope="row">
+                {{ ind + 1 }}
+            </th>
+            <td>
+                {{ user.name }}
+            </td>
+            <td>
+                {{ user.email }}
+            </td>
+            <td>
+                {{ user.mobile }}
+            </td>
+            <td>
+                <button 
+                  class="btn btn-danger"
+                  (click)="deleteUser(user.id)"
+                  >
+                  Delete
+                </button>
+            </td>
+            <td>
+              <a 
+                class="btn btn-primary"
+                [routerLink]="['/create', user.id]"
+                >
+                Update
+            </a>
+          </td>
+          </tr>
+        </tbody>
+      </table>
+</article>

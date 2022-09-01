@@ -1,0 +1,86 @@
+<article class="container mt-3">
+
+    <section 
+        *ngIf="errorMsg"
+        class="alert alert-danger alert-dismissible fade show row" 
+        role="alert"
+        >
+        <strong>
+            {{ errorMsg }}
+        </strong>
+        <button 
+            type="button" 
+            class="btn-close" 
+            data-bs-dismiss="alert" 
+            aria-label="Close"
+            >
+        </button>
+    </section>
+
+    <section 
+        *ngIf="successMsg"
+        class="alert alert-success alert-dismissible fade show row" 
+        role="alert"
+        >
+        <strong>
+            {{ successMsg }}
+        </strong>
+        <button 
+            type="button" 
+            class="btn-close" 
+            data-bs-dismiss="alert" 
+            aria-label="Close"
+            >
+        </button>
+    </section>
+
+    <section class="row">
+        <form [formGroup]="userReactiveForm">
+            <div class="col-md-4 mt-2">
+                <input 
+                    class="form-control" 
+                    type="text"
+                    placeholder="Enter name"
+                    formControlName="name"
+                />
+            </div>
+            <div class="col-md-4 mt-2">
+                <input 
+                    class="form-control" 
+                    type="text"
+                    placeholder="Enter email"
+                    formControlName="email"
+                />
+            </div>
+            <div class="col-md-4 mt-2">
+                <input 
+                    class="form-control" 
+                    type="text"
+                    placeholder="Enter mobile number"
+                    formControlName="mobile"
+                />
+            </div>
+            <div *ngIf="userId; then updateBlock else createBlock"></div>
+            <ng-template #createBlock>
+                <div class="col-md-4 mt-2">
+                    <button 
+                        class="btn btn-primary btn-lg"
+                        (click)="userSubmit()"
+                        >
+                        Create user
+                    </button>
+                </div>
+            </ng-template>
+            <ng-template #updateBlock>
+                <div class="col-md-4 mt-2">
+                    <button 
+                        class="btn btn-primary btn-lg"
+                        (click)="updateUser()"
+                        >
+                        Update user
+                    </button>
+                </div>
+            </ng-template>
+        </form>
+    </section>
+</article>
